@@ -37,10 +37,10 @@ def calculate_wer(hypothesis, reference):
     return wer_percentage
 
 # Reference text
-reference_text = 'my name is kenneth'
+reference_text = 'text 1'
 
 # Replace with the output of the first HTR tool
-recognized_text = 'myy nime iz kenneth'
+recognized_text = 'text 2'
 
 cer_recognized_text = calculate_cer(recognized_text, reference_text)
 wer_recognized_text = calculate_wer(recognized_text, reference_text)

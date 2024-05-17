@@ -11,12 +11,8 @@ def calculate_wer(reference, hypothesis):
 	wer = (substitutions + deletions + insertions) / total_words
 	return wer
 
-reference_text = "My name is Ivan \
-Blah blah blah \
-Test test test"
-hypothesis_text = "My nam ist ivan \
-Blah blah blah4 \
-Test  test test"
- 
+reference_text = "Test test test"
+hypothesis_text = "Test tes tes"
+
 wer_score = calculate_wer(reference_text, hypothesis_text)
 print("Word Error Rate (WER):", wer_score)

@@ -1,34 +1,34 @@
 import Levenshtein
 
 def calculate_cer(hypothesis, reference):
-    # Convert both the hypothesis and reference to lowercase for case-insensitive comparison
+    # Converts both the hypothesis and reference to lowercase for case-insensitive comparison
     hypothesis = hypothesis.lower()
     reference = reference.lower()
 
-    # Calculate CER using the Levenshtein distance
+    # Calculates CER using the Levenshtein distance
     cer = Levenshtein.distance(hypothesis, reference)
 
-    # Normalize the CER score by dividing it by the length of the reference text
+    # Normalizes the CER score by dividing it by the length of the reference text
     cer /= len(reference)
 
-    # Convert the CER to a percentage
+    # Converts the CER to a percentage
     cer_percentage = cer * 100
 
     return cer_percentage
 
 def calculate_wer(hypothesis, reference):
-    # Convert both the hypothesis and reference to lowercase for case-insensitive comparison
+    # Converts both the recognized and reference texts to lowercase for case-insensitive comparison
     hypothesis = hypothesis.lower()
     reference = reference.lower()
 
-    # Split the hypothesis and reference into words
+    # Splits the recognized and reference texts into words
     hypothesis_words = hypothesis.split()
     reference_words = reference.split()
 
-    # Calculate WER using the Levenshtein distance on words
+    # Calculates WER using the Levenshtein distance on words
     wer = Levenshtein.distance(hypothesis_words, reference_words)
 
-    # Normalize the WER score by dividing it by the number of words in the reference text
+    # Normalizes the WER score by dividing it by the number of words in the reference text
     wer /= len(reference_words)
 
     # Convert the WER to a percentage

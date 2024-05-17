@@ -1,9 +1,14 @@
 import Levenshtein
 
-def calculate_cer(hypothesis, reference):
+def calculate_cer(hypothesis_path, reference_path):
+    with open(reference_path, 'r', encoding='utf-8', errors='replace') as ref_file:
+        reference = ref_file.read().split()
+    with open(hypothesis_path, 'r', encoding='utf-8', errors='replace') as hyp_file:
+        hypothesis = hyp_file.read().split()
+        
     # Convert both the hypothesis and reference to lowercase for case-insensitive comparison
-    hypothesis = hypothesis.lower()
-    reference = reference.lower()
+    hypothesis = ' '.join(hypothesis).lower()
+    reference = ' '.join(reference).lower()
 
     # Calculate CER using the Levenshtein distance
     cer = Levenshtein.distance(hypothesis, reference)
@@ -16,10 +21,15 @@ def calculate_cer(hypothesis, reference):
 
     return cer_percentage
 
-def calculate_wer(hypothesis, reference):
+def calculate_wer(hypothesis_path, reference_path):
+    with open(reference_path, 'r', encoding='utf-8', errors='replace') as ref_file:
+        reference = ref_file.read().split()
+    with open(hypothesis_path, 'r', encoding='utf-8', errors='replace') as hyp_file:
+        hypothesis = hyp_file.read().split()
+
     # Convert both the hypothesis and reference to lowercase for case-insensitive comparison
-    hypothesis = hypothesis.lower()
-    reference = reference.lower()
+    hypothesis = ' '.join(hypothesis).lower()
+    reference = ' '.join(reference).lower()
 
     # Split the hypothesis and reference into words
     hypothesis_words = hypothesis.split()
@@ -36,11 +46,8 @@ def calculate_wer(hypothesis, reference):
 
     return wer_percentage
 
-# Reference text
-reference_text = 'my name is kenneth'
-
-# Replace with the output of the first HTR tool
-recognized_text = 'myy nime iz kenneth'
+reference_text = "/Users/path/file.txt"
+recognized_text = "/Users/path/file.txt"
 
 cer_recognized_text = calculate_cer(recognized_text, reference_text)
 wer_recognized_text = calculate_wer(recognized_text, reference_text)
